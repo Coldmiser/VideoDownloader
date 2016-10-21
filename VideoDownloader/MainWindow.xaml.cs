@@ -169,7 +169,7 @@ namespace VideoDownloader
                         //TODO:  Progress Indicator is not working, this needs to be fixed
                         //videoDownloader.DownloadProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
                         //downloader.DownloadProgressChanged += Downloader_DownloadProgressChanged;
-                        downloader.DownloadProgressChanged += (sender, args) => lblPercentage.Content;
+                        //downloader.DownloadProgressChanged += (sender, args) => lblPercentage.Content;
                         Thread thread = new Thread(() => { downloader.Execute(); }) { IsBackground = true };
                         thread.Start();
 
