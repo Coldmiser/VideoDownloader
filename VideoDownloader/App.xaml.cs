@@ -21,6 +21,7 @@ namespace VideoDownloader
                 //http://stackoverflow.com/questions/25371737/what-is-the-entry-point-of-a-wpf-application?noredirect=1&lq=1
                 MessageBox.Show(String.Join(", ", e.Args.Length), "REM Out in App.xaml.cs", MessageBoxButton.OK, MessageBoxImage.Information);
                 MainWindow.WindowState = WindowState.Minimized;
+                Application.Current.MainWindow.WindowState = WindowState.Minimized;
                 //WindowState.Minimized;
             }
         }

@@ -152,7 +152,7 @@ namespace VideoDownloader
                                 writetext.WriteLine();
                             }
 
-
+                        //https://github.com/flagbug/YoutubeExtractor/
                         //VideoInfo video = videos.First(p => p.VideoType == VideoType.Mp4 && p.Resolution == Convert.ToInt32(cboResolution.Text));
                         VideoInfo video = videos.First(p => p.VideoType == VideoType.Mp4 && p.Resolution == MaxResolution);
                         if (video.RequiresDecryption)
@@ -166,7 +166,10 @@ namespace VideoDownloader
                             (video, System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), 
                             RemoveIllegalPathCharacters(video.Title + video.VideoExtension)));
 
-                        downloader.DownloadProgressChanged += Downloader_DownloadProgressChanged;
+                        //TODO:  Progress Indicator is not working, this needs to be fixed
+                        //videoDownloader.DownloadProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
+                        //downloader.DownloadProgressChanged += Downloader_DownloadProgressChanged;
+                        downloader.DownloadProgressChanged += (sender, args) => lblPercentage.Content;
                         Thread thread = new Thread(() => { downloader.Execute(); }) { IsBackground = true };
                         thread.Start();
 
@@ -183,10 +186,11 @@ namespace VideoDownloader
         }
         private void Downloader_DownloadProgressChanged(object sender, ProgressEventArgs e)
         {
+            //TODO:  Once Progress bar is fixed, this can be re-enabled
             //Invoke(new MethodInvoker(delegate ()
             //{
             //    progressBar.Value = (int)e.ProgressPercentage;
-            //    lblPercentage.Text = $"{string.Format("{0:0.##}", e.ProgressPercentage)}%";
+            //    lblPercentage.Content = $"{string.Format("{0:0.##}", e.ProgressPercentage)}%";
             //    progressBar.Update();
             //    if (progressBar.Value == progressBar.Maximum)
             //    {
